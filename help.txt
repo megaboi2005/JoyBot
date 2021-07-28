@@ -1,0 +1,25 @@
+$info [user] - get the info and stats of your friends
+
+$buy [item/list] - coming soon (its here but I don't suggest using it)
+
+$sell [item/list] - coming soon
+
+$help [page] - you just used this cmd bruh
+
+$randomperson - [shortcut - $ranper] get random person
+
+$randomcrab - [shortcut - $rancrab] get random crab xd
+
+$echo - echo words and stuff uwu
+
+for about page, visit `help 1`
+^
+-- about --
+This is a complete rewrite of my other bot called WearyBot. It was poorly made as I was just learning
+python so I completely gave up on it to return a couple months later and make this one.
+
+Wearybot also lacked features as it didn't have currency and was too crazy to make changes to the code.
+I hope you all understand in the death of wearybot, But this one will rise up with more features and better optimization.
+As always upon release this bot will be open source but for now I will only allow it in certain servers that I trust.
+^
+secret page :o
