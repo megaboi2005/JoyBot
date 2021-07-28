@@ -170,4 +170,4 @@ async def on_message(message):
     ##test
 
 
-client.run('ODY4OTYxMzAwODU4OTI5MTcz.YP3RRg.y3kDCdhofZ6Ov-v3cLl4DcE6GHs')
+client.run('token')
