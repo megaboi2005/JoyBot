@@ -17,5 +17,5 @@ The help menu has a feature called pages where if you type $help 1 it would take
 The format to indicate the next page is a ^ for example *page 1 ^ page 2* 
 
 # LMAO OH SHIT
-oh yeah and one more thing, make a randomcrabs folder and put random images of whatever you want ig. I do suggest putting crabs, tho... you can modify the source to make
+oh yeah and one more thing, make a crabs folder and put random images of whatever you want ig. I do suggest putting crabs, tho... you can modify the source to make
 something like $randomgorrilla
