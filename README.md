@@ -19,3 +19,7 @@ The format to indicate the next page is a ^ for example *page 1 ^ page 2*
 # LMAO OH SHIT
 oh yeah and one more thing, make a crabs folder and put random images of whatever you want ig. I do suggest putting crabs, tho... you can modify the source to make
 something like $randomgorrilla
+
+
+#known issues
+yeah up sorry but shop doesnt work yet fully. I still need to add an inventory and that might take a while since this is the first time I have messed with files. I might rewrite all the code so that user has multiple files for the profile but who knows.
