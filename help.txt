@@ -1,9 +1,18 @@
+Welcome to the Help menu
+
+`$help 1` for money stuffs
+
+`$help 2` for random haha funny
+
+ for about page, visit `$help 3`
+^
 $info [user] - get the info and stats of your friends
 
 $buy [item/list] - coming soon (its here but I don't suggest using it)
 
 $sell [item/list] - coming soon
-
+for about page, visit `$help 3`
+^
 $help [page] - you just used this cmd bruh
 
 $randomperson - [shortcut - $ranper] get random person
@@ -12,7 +21,13 @@ $randomcrab - [shortcut - $rancrab] get random crab xd
 
 $echo - echo words and stuff uwu
 
-for about page, visit `help 1`
+$roll - roll sum dice
+
+$randomquote - [shortcut - $ranquote] get a random quote to boost your depression
+
+$randomjoke - [shortcut - $joke] get a haha funny joke [warning nsfw]
+
+for about page, visit `$help 3`
 ^
 -- about --
 This is a complete rewrite of my other bot called WearyBot. It was poorly made as I was just learning

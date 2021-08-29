@@ -4,19 +4,32 @@ import random
 import discord
 from discord.ext import commands
 import json
+import asyncio
+import time
+import emoji
 
 
 ##global variables
 client = discord.Client()
 client = commands.Bot(command_prefix = '.')
-
+topuser = 'no one'
 @client.event
 async def on_message(message):
     def xp(operation, amount, message):
         global complete
         try:
             user = open('database/' + str(message.author.id) + '.json', "r")
+
             info = json.loads(user.read())
+            #topfile = open('name','r')
+            #topuser = json.loads(topfile.read())
+            #if not str(message.author.id) == topuser["name"]:
+            #    info2 = json.load(topfile.read())
+            #    if int(info2["xp"]) >= int(info["xp"]):
+            #        topfile = open('name', 'w')
+            #        topfile.write('{"xp"="'+info["xp"]+'"}')
+
+
             user.close()
             user = open('database/' + str(message.author.id) + '.json', "w")
             xpstart = info["xp"]
@@ -57,7 +70,14 @@ async def on_message(message):
     except IndexError:
         args = ''
     try:
+
         print('(', message.guild.name, ')',message.author, ':', message.content)
+        try:
+            log = open('log.txt','a')
+            log.write(f'({message.guild.name}){message.author}:{message.content}\n')
+        except UnicodeEncodeError:
+            log = open('log.txt','a')
+            log.write(f'({message.guild.name}){message.author}:{emoji.demojize(message.content)}\n')
     except AttributeError:
         print('(',message.author, ':', message.content)
 
@@ -142,32 +162,86 @@ async def on_message(message):
 
     ##randomperson
     if cmd == '$randomperson' or cmd == '$ranper':
+        status = await message.channel.send('Downloading...')
         os.system('curl -o person.png https://thispersondoesnotexist.com/image')
-        await message.channel.send(file=discord.File('person.png'))
+        await status.edit(content="Uploading....")
+        await message.channel.send(file = discord.File('person.png'))
+        await status.delete()
         os.remove("person.png")
 
     ##randomcrab
     if cmd == '$randomcrab' or cmd == '$rancrab':
         files = os.listdir('crabs')
         outcome = random.choice(files)
+        status = await message.channel.send('Uploading...')
         await message.channel.send(file=discord.File('crabs/'+outcome))
-
+        await status.delete()
     ##ECHO
     if cmd == '$echo':
         await message.channel.send(output)
 
-    ##add
-    #if cmd == '$add':
-        #final = 0
-        #outcome = output.split()
-        #for x in outcome:
+    ##attract
+    if cmd == '$attract':
+        await message.channel.send('hi! I realize this might come off as a bit odd haha.. but before the whole quarantine thing I saw you around school, and you seem really cool. If you arent interested in talking thats alright, no worries!')
+##roll dice
+    if cmd == '$roll':
+        numbers = ["1", "2", "3", "4", "5", "6"]
+        picked = random.choice(numbers)
+        output = await message.channel.send('rolling....')
+        time.sleep(2)
+        await output.edit(content='you rolled and got a ' + picked)
 
-            #print(outcome[x])
-            #final += int(add)
+    ##ping
+    if cmd == '$ping':
+        await message.channel.send('pong!')
 
-        #await message.channel.send(final)
+        await message.channel.send(client.latency)
+
+    ##8ball
+    if cmd == '$8ball':
+        outcomes = ["As I see it, yes.", "Ask again later.", "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.", "Don’t count on it.", "It is certain.", "It is decidedly so.", "Most likely.", "My reply is no.", "My sources say no.", "Outlook not so good.", "Outlook good.", "Reply hazy, try again.","Signs point to yes.", "Very doubtful.", "Without a doubt.", "Yes.", "Yes – definitely.", "You may rely on it."]
+
+        picked2 = random.choice(outcomes)
+        await message.channel.send(picked2)
+
+    ##quote
+    if cmd == '$randomquote' or cmd == '$ranquote':
+        status = await message.channel.send('Downloading text file...')
+        os.system('curl https://inspirobot.me/api?generate=true --output url.txt')
+        url = open('url.txt', 'r').read().replace('\n', ' ')
+        #print(url)
+        await status.edit(content ='Downloading image...')
+        os.system(f'curl {url} --output quote.png')
+        await status.edit(content="Uploading....")
+        await message.channel.send(file=discord.File('quote.png'))
+        await status.delete()
+    ##joke
+    if cmd == '$randomjoke' or cmd == '$joke':
+        status = await message.channel.send('Downloading the funny...')
+        os.system('curl -k "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,racist,sexist&format=txt" --output joke.txt')
+        joke = open('joke.txt', 'r')
+        await status.edit(content=joke.read())
+
+
 
     ##test
 
+
+
+async def ch_pr():
+    await client.wait_until_ready()
+    added = 0
+    statuses = ["BALLS","Minecraft","Dead By Daylight","$help lol"]
+
+    while not client.is_closed():
+
+        try:
+            status = statuses[added]
+        except IndexError:
+            added = 0
+        await client.change_presence(activity=discord.Game(name=status,))
+        added += 1
+        await asyncio.sleep(10)
+client.loop.create_task(ch_pr())
 
 client.run('token')
