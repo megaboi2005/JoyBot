@@ -181,8 +181,8 @@ async def on_message(message):
         await message.channel.send(output)
 
     ##attract
-    if cmd == '$attract':
-        await message.channel.send('hi! I realize this might come off as a bit odd haha.. but before the whole quarantine thing I saw you around school, and you seem really cool. If you arent interested in talking thats alright, no worries!')
+    #if cmd == '$attract':
+        #await message.channel.send('hi! I realize this might come off as a bit odd haha.. but before the whole quarantine thing I saw you around school, and you seem really cool. If you arent interested in talking thats alright, no worries!')
 ##roll dice
     if cmd == '$roll':
         numbers = ["1", "2", "3", "4", "5", "6"]
